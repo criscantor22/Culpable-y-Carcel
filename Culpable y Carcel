@@ -15,11 +15,7 @@ Original file is located at
 import random
 from IPython.display import clear_output 
 #Listas
-Per=['Pedro','Juan','Bryan','Ana','Luis','Javier']
-Arm=['Hueso afilado','lapiz afilado','Pistola','Navaja','Cuchillo']
-Esc=['Cocina','Celdas','Canchas','Regaderas','Comedor']
-Asesinado=[]
-Elegido=[]
+
 
 #RESPUESTAS----------------------------------------------------
 
@@ -55,8 +51,7 @@ Ana=""
 Luis=""
 Javier=""
 #
-Escenariost=[ ]
-Dialogo=[]
+
 #HISTORIAS---------------------------------------------------------
 #Historia 1
 def Historia1():
@@ -355,265 +350,278 @@ vigilando a todos.\n''')
 print('presiona enter para continuar...')
 input()
 clear_output()
-#excluir al asesinado
-R_asesinado=random.randint(0,5)
-Asesinado.append(Per[R_asesinado])
+while True:
+  Per=['Pedro','Juan','Bryan','Ana','Luis','Javier']
+  Arm=['Hueso afilado','lapiz afilado','Pistola','Navaja','Cuchillo']
+  Esc=['Cocina','Celdas','Canchas','Regaderas','Comedor']
+  Asesinado=[]
+  Elegido=[]
+  Escenariost=[ ]
+  Dialogo=[]
+  #excluir al asesinado
+  R_asesinado=random.randint(0,5)
+  Asesinado.append(Per[R_asesinado])
 
-#fin de la exclusion
-#Numeros aleatorios para personaje,arma y escenario
-R_per = random.randint(0,4)
-while R_per==R_asesinado:
+  #fin de la exclusion
+  #Numeros aleatorios para personaje,arma y escenario
   R_per = random.randint(0,4)
-R_arm = random.randint(0,4)
-R_esc = random.randint(0,4)
-Elegido.append(Per[R_per])
-#Elegido.append(Arm[R_arm])
+  while R_per==R_asesinado:
+    R_per = random.randint(0,4)
+  R_arm = random.randint(0,4)
+  R_esc = random.randint(0,4)
+  Elegido.append(Per[R_per])
+  #Elegido.append(Arm[R_arm])
 
-Per.pop(R_asesinado)
+  Per.pop(R_asesinado)
 
-if (R_asesinado==0 or R_asesinado==1) and (R_per==0 or R_per==1):
-  D,E,A=Historia1()
-  #print("h1")
-elif (R_asesinado==0 or R_asesinado==2) and (R_per==0 or R_per==2):
-  D,E,A=Historia2()
-  #print("h2")
-elif (R_asesinado==0 or R_asesinado==3) and (R_per==0 or R_per==3):
-  D,E,A=Historia3()
-  #print("h3")
-elif (R_asesinado==0 or R_asesinado==4) and (R_per==0 or R_per==4):
-  D,E,A=Historia4()
-  #print("h4")
-elif (R_asesinado==0 or R_asesinado==5) and (R_per==0 or R_per==5):
-  D,E,A=Historia5()
-  #print("h5")
-elif (R_asesinado==1 or R_asesinado==2) and (R_per==1 or R_per==2):
-  D,E,A=Historia6()
-  #print("h6")
-elif (R_asesinado==1 or R_asesinado==3) and (R_per==1 or R_per==3):
-  D,E,A=Historia7()
-  #print("h7")
-elif (R_asesinado==1 or R_asesinado==4) and (R_per==1 or R_per==4):
-  D,E,A=Historia8()
-  #print("h8")
-elif (R_asesinado==1 or R_asesinado==5) and (R_per==1 or R_per==5):
-  D,E,A=Historia9()
-  #print("h9")
-elif (R_asesinado==2 or R_asesinado==3) and (R_per==2 or R_per==3):
-  D,E,A=Historia10()
-  #print("h10")
-elif (R_asesinado==2 or R_asesinado==4) and (R_per==2 or R_per==4):
-  D,E,A=Historia11()
-  #print("h11")
-elif (R_asesinado==2 or R_asesinado==5) and (R_per==2 or R_per==5):
-  D,E,A=Historia12()
-  #print("h12")
-elif (R_asesinado==3 or R_asesinado==4) and (R_per==3 or R_per==4):
-  D,E,A=Historia13()
-  #print("h13")
-elif (R_asesinado==3 or R_asesinado==5) and (R_per==3 or R_per==5):
-  D,E,A=Historia14()
-  #print("h14")
-elif (R_asesinado==4 or R_asesinado==5) and (R_per==4 or R_per==5):
-  D,E,A=Historia15()
-  #print("h15")
-else:
-  print("No valido") 
-#DIALOGOS correccion---------------
-D.pop(R_asesinado)
-lon=len(A)
-xi=random.randint(0,(lon-1))
-Elegido.append(A[xi])
-
-lon=len(E)
-xi=random.randint(0,(lon-1))
-Elegido.append(E[xi])
-
-#------------------------------
-print("Oh, no!. Han asesinado a *"+str(Asesinado[0]).upper()+"* veamos si puedes resolver este misterio")
-print("Buena suerte")
-print('\npresiona enter para continuar...')
-input()
-clear_output()
-for x in range(1,10):
-  
-  #print(Asesinado[:])
-  clear_output()
-  #print(Elegido[:])
-  print("¿Que deseas preguntar?")
-  print("1.Personaje\n2.Arma\n3.Escenario")
-  try:
-    resp=int(input())
-  except ValueError:
-    print("Debes escribir un número.")
-    x=x-1
-    print('\npresiona enter para continuar...')
-    input()
-    clear_output()
-    continue
-  if resp<1 or resp>3:
-      print("No es valida la respuesta")
-      x=x-1
-      print('\npresiona enter para continuar...')
-      input()
-      clear_output()
-      continue
-  clear_output()
-  if resp==1:
-    print("¿A quien le deseas preguntar?")
-    print("1."+Per[0]+"\n2."+Per[1]+"\n3."+Per[2]+"\n4."+Per[3]+"\n5."+Per[4])
-    try:
-      s1=int(input())
-    except ValueError:
-        print("Debes escribir un número.")
-        x=x-1
-        print('\npresiona enter para continuar...')
-        input()
-        clear_output()
-        continue
-    if s1<1 or s1>5:
-      print("No es valida la respuesta")
-      x=x-1
-      print('\npresiona enter para continuar...')
-      input()
-      clear_output()
-      continue
-    clear_output()
-    print(Per[int(s1)-1]+": "+D[int(s1)-1])
-    print('\npresiona enter para continuar...')
-    input()
-    clear_output()
-  elif resp==2:
-    print("¿Que arma necesitas información?")
-    print("1."+Arm[0]+"\n2."+Arm[1]+"\n3."+Arm[2]+"\n4."+Arm[3]+"\n5."+Arm[4])
-    try:
-      s1=int(input())
-    except ValueError:
-        print("Debes escribir un número.")
-        x=x-1
-        print('\npresiona enter para continuar...')
-        input()
-        clear_output()
-        continue
-    if s1<1 or s1>5:
-      print("No es valida la respuesta")
-      x=x-1
-      print('\npresiona enter para continuar...')
-      input()
-      clear_output()
-      continue
-    clear_output()
-    if Elegido[1]==Arm[int(s1)-1] :
-      x=random.randint(0,4)
-      print(Respc_arm[x])
-      print('\npresiona enter para continuar...')
-      input()
-      clear_output()
-    elif s1<1 and s1>5:
-      print("No es valida la respuesta")
-      print('\npresiona enter para continuar...')
-      input()
-      clear_output()
-    else:
-      x=random.randint(0,4)
-      print(Respi_arm[x])
-      print('\npresiona enter para continuar...')
-      input()
-      clear_output()
-
-  elif resp==3:
-    print("¿En cual escenario quieres preguntar?")
-    print("1."+Esc[0]+"\n2."+Esc[1]+"\n3."+Esc[2]+"\n4."+Esc[3]+"\n5."+Esc[4])
-    try:
-      s1=int(input())
-    except ValueError:
-        print("Debes escribir un número.")
-        x=x-1
-        print('\npresiona enter para continuar...')
-        input()
-        clear_output()
-        continue
-    if s1<1 or s1>5:
-      print("Debes escribir un número valido")
-      x=x-1
-      print('\npresiona enter para continuar...')
-      input()
-      clear_output()
-      continue
-    clear_output()
-    if Elegido[2]==Esc[int(s1)-1] :
-      x=random.randint(0,4)
-      print(Respc_esc[x])
-      print('\npresiona enter para continuar...')
-      input()
-      clear_output()
-    elif s1<1 and s1>5:
-      print("No es valida la respuesta")
-      print('\npresiona enter para continuar...')
-      input()
-      clear_output()
-    else:
-      x=random.randint(0,4)
-      print(Respi_esc[x])
-      print('\npresiona enter para continuar...')
-      input()
-      clear_output()
+  if (R_asesinado==0 or R_asesinado==1) and (R_per==0 or R_per==1):
+    D,E,A=Historia1()
+    #print("h1")
+  elif (R_asesinado==0 or R_asesinado==2) and (R_per==0 or R_per==2):
+    D,E,A=Historia2()
+    #print("h2")
+  elif (R_asesinado==0 or R_asesinado==3) and (R_per==0 or R_per==3):
+    D,E,A=Historia3()
+    #print("h3")
+  elif (R_asesinado==0 or R_asesinado==4) and (R_per==0 or R_per==4):
+    D,E,A=Historia4()
+    #print("h4")
+  elif (R_asesinado==0 or R_asesinado==5) and (R_per==0 or R_per==5):
+    D,E,A=Historia5()
+    #print("h5")
+  elif (R_asesinado==1 or R_asesinado==2) and (R_per==1 or R_per==2):
+    D,E,A=Historia6()
+    #print("h6")
+  elif (R_asesinado==1 or R_asesinado==3) and (R_per==1 or R_per==3):
+    D,E,A=Historia7()
+    #print("h7")
+  elif (R_asesinado==1 or R_asesinado==4) and (R_per==1 or R_per==4):
+    D,E,A=Historia8()
+    #print("h8")
+  elif (R_asesinado==1 or R_asesinado==5) and (R_per==1 or R_per==5):
+    D,E,A=Historia9()
+    #print("h9")
+  elif (R_asesinado==2 or R_asesinado==3) and (R_per==2 or R_per==3):
+    D,E,A=Historia10()
+    #print("h10")
+  elif (R_asesinado==2 or R_asesinado==4) and (R_per==2 or R_per==4):
+    D,E,A=Historia11()
+    #print("h11")
+  elif (R_asesinado==2 or R_asesinado==5) and (R_per==2 or R_per==5):
+    D,E,A=Historia12()
+    #print("h12")
+  elif (R_asesinado==3 or R_asesinado==4) and (R_per==3 or R_per==4):
+    D,E,A=Historia13()
+    #print("h13")
+  elif (R_asesinado==3 or R_asesinado==5) and (R_per==3 or R_per==5):
+    D,E,A=Historia14()
+    #print("h14")
+  elif (R_asesinado==4 or R_asesinado==5) and (R_per==4 or R_per==5):
+    D,E,A=Historia15()
+    #print("h15")
   else:
-    print("Ingresa un numero valido")
-    x=x-1
+    print("No valido") 
+  #DIALOGOS correccion---------------
+  D.pop(R_asesinado)
+  lon=len(A)
+  xi=random.randint(0,(lon-1))
+  Elegido.append(A[xi])
 
-#RESPUESTA FINAL------------------
-clear_output()
-print("Se acabó tu trabajo detective, con todas las pistas que recolectaste, ¿quien crees que sea el asesino?")
-print("1."+Per[0]+"\n2."+Per[1]+"\n3."+Per[2]+"\n4."+Per[3]+"\n5."+Per[4])
-respuestaf_ase=input()
-if Elegido[0]==Per[int(respuestaf_ase)-1]:
-  r1=False
-else:
-  r1=True
-#---------------------------------
-clear_output()
-print("¿Que arma fue la utilizada?")
-print("1."+Arm[0]+"\n2."+Arm[1]+"\n3."+Arm[2]+"\n4."+Arm[3]+"\n5."+Arm[4])
-respuestaf_arm=input()
-if Elegido[1]==Arm[int(respuestaf_arm)-1]:
-  r2=False
-else:
-  r2=True
-#----------------------------------
-clear_output()
-print("¿En que escenario fue el asesinato?")
-print("1."+Esc[0]+"\n2."+Esc[1]+"\n3."+Esc[2]+"\n4."+Esc[3]+"\n5."+Esc[4])
-respuestaf_esc=input()
-if Elegido[2]==Esc[int(respuestaf_esc)-1]:
-  r3=False
-else:
-  r3=True
-#-----------------------------------
-#-RESULTADOS FINALES---------
-print('\npresiona enter para continuar...')
-input()
-clear_output()
-if r1==False and r2==True and r3==True:
-  print('''Parece ser que solo encontraste el asesino, pero no hay arma ni locación del
-delito, puede que con apoyo legal salga libre.''')
-elif r1==True and r2==False and r3==True:
-  print('''Solo encontraste la arma homicida, es una pena que el asesino siga suelto,
-cuidado que puede ir por ti.''')
-elif r1==True and r2==True and r3==False:
-  print('''Solo se encontró la locación del suceso, parece ser que esto no va a proceder,
-porque sin arma y sin sospecheso, no se puede hacer nada''')
-elif r1==False and r2==False and r3==True:
-  print('''Bien hecho se encontró el culpable y el arma, pero la habitación no, parece
-que el asesino si hizo una cosa bien.''')
-elif r1==False and r2==True and r3==False:
-  print('''Bien, se encontró el asesino y la habitacion, pero el arma se perdío, podría
-estar a la vista de todos, o desaparecio''')
-elif r1==True and r2==False and r3==False:
-  print('''Buen trabajo, encontraste el arma y la habitación pero el asesino fue muy astuto
-y te mintio e inculpo a alguien mas. ''')
-elif r1==False and r2==False and r3==False:
-  print('''Excelente, este caso quedo completamente resuelto gracias a ti, esperemos que
-ese asesino ya no salga. ''')
-elif r1==True and r2==True and r3==True:
-  print('''Pff, este caso quedo como en un inicio sin pistas ni nada, creo que buscaremos
-otro detective, o quieres intentarlo de nuevo?''')
+  lon=len(E)
+  xi=random.randint(0,(lon-1))
+  Elegido.append(E[xi])
+
+  #------------------------------
+  print("Oh, no!. Han asesinado a *"+str(Asesinado[0]).upper()+"* veamos si puedes resolver este misterio")
+  print("Buena suerte")
+  print('\npresiona enter para continuar...')
+  input()
+  clear_output()
+  for x in range(1,10):
+    
+    #print(Asesinado[:])
+    clear_output()
+    #print(Elegido[:])
+    print("¿Que deseas preguntar?")
+    print("1.Personaje\n2.Arma\n3.Escenario")
+    try:
+      resp=int(input())
+    except ValueError:
+      print("Debes escribir un número.")
+      x=x-1
+      print('\npresiona enter para continuar...')
+      input()
+      clear_output()
+      continue
+    if resp<1 or resp>3:
+        print("No es valida la respuesta")
+        x=x-1
+        print('\npresiona enter para continuar...')
+        input()
+        clear_output()
+        continue
+    clear_output()
+    if resp==1:
+      print("¿A quien le deseas preguntar?")
+      print("1."+Per[0]+"\n2."+Per[1]+"\n3."+Per[2]+"\n4."+Per[3]+"\n5."+Per[4])
+      try:
+        s1=int(input())
+      except ValueError:
+          print("Debes escribir un número.")
+          x=x-1
+          print('\npresiona enter para continuar...')
+          input()
+          clear_output()
+          continue
+      if s1<1 or s1>5:
+        print("No es valida la respuesta")
+        x=x-1
+        print('\npresiona enter para continuar...')
+        input()
+        clear_output()
+        continue
+      clear_output()
+      print(Per[int(s1)-1]+": "+D[int(s1)-1])
+      print('\npresiona enter para continuar...')
+      input()
+      clear_output()
+    elif resp==2:
+      print("¿Que arma necesitas información?")
+      print("1."+Arm[0]+"\n2."+Arm[1]+"\n3."+Arm[2]+"\n4."+Arm[3]+"\n5."+Arm[4])
+      try:
+        s1=int(input())
+      except ValueError:
+          print("Debes escribir un número.")
+          x=x-1
+          print('\npresiona enter para continuar...')
+          input()
+          clear_output()
+          continue
+      if s1<1 or s1>5:
+        print("No es valida la respuesta")
+        x=x-1
+        print('\npresiona enter para continuar...')
+        input()
+        clear_output()
+        continue
+      clear_output()
+      if Elegido[1]==Arm[int(s1)-1] :
+        x=random.randint(0,4)
+        print(Respc_arm[x])
+        print('\npresiona enter para continuar...')
+        input()
+        clear_output()
+      elif s1<1 and s1>5:
+        print("No es valida la respuesta")
+        print('\npresiona enter para continuar...')
+        input()
+        clear_output()
+      else:
+        x=random.randint(0,4)
+        print(Respi_arm[x])
+        print('\npresiona enter para continuar...')
+        input()
+        clear_output()
+
+    elif resp==3:
+      print("¿En cual escenario quieres preguntar?")
+      print("1."+Esc[0]+"\n2."+Esc[1]+"\n3."+Esc[2]+"\n4."+Esc[3]+"\n5."+Esc[4])
+      try:
+        s1=int(input())
+      except ValueError:
+          print("Debes escribir un número.")
+          x=x-1
+          print('\npresiona enter para continuar...')
+          input()
+          clear_output()
+          continue
+      if s1<1 or s1>5:
+        print("Debes escribir un número valido")
+        x=x-1
+        print('\npresiona enter para continuar...')
+        input()
+        clear_output()
+        continue
+      clear_output()
+      if Elegido[2]==Esc[int(s1)-1] :
+        x=random.randint(0,4)
+        print(Respc_esc[x])
+        print('\npresiona enter para continuar...')
+        input()
+        clear_output()
+      elif s1<1 and s1>5:
+        print("No es valida la respuesta")
+        print('\npresiona enter para continuar...')
+        input()
+        clear_output()
+      else:
+        x=random.randint(0,4)
+        print(Respi_esc[x])
+        print('\npresiona enter para continuar...')
+        input()
+        clear_output()
+    else:
+      print("Ingresa un numero valido")
+      x=x-1
+
+  #RESPUESTA FINAL------------------
+  clear_output()
+  print("Se acabó tu trabajo detective, con todas las pistas que recolectaste, ¿quien crees que sea el asesino?")
+  print("1."+Per[0]+"\n2."+Per[1]+"\n3."+Per[2]+"\n4."+Per[3]+"\n5."+Per[4])
+  respuestaf_ase=input()
+  if Elegido[0]==Per[int(respuestaf_ase)-1]:
+    r1=False
+  else:
+    r1=True
+  #---------------------------------
+  clear_output()
+  print("¿Que arma fue la utilizada?")
+  print("1."+Arm[0]+"\n2."+Arm[1]+"\n3."+Arm[2]+"\n4."+Arm[3]+"\n5."+Arm[4])
+  respuestaf_arm=input()
+  if Elegido[1]==Arm[int(respuestaf_arm)-1]:
+    r2=False
+  else:
+    r2=True
+  #----------------------------------
+  clear_output()
+  print("¿En que escenario fue el asesinato?")
+  print("1."+Esc[0]+"\n2."+Esc[1]+"\n3."+Esc[2]+"\n4."+Esc[3]+"\n5."+Esc[4])
+  respuestaf_esc=input()
+  if Elegido[2]==Esc[int(respuestaf_esc)-1]:
+    r3=False
+  else:
+    r3=True
+  #-----------------------------------
+  #-RESULTADOS FINALES---------
+  print('\npresiona enter para continuar...')
+  input()
+  clear_output()
+  if r1==False and r2==True and r3==True:
+    print('''Parece ser que solo encontraste el asesino, pero no hay arma ni locación del
+  delito, puede que con apoyo legal salga libre.''')
+  elif r1==True and r2==False and r3==True:
+    print('''Solo encontraste la arma homicida, es una pena que el asesino siga suelto,
+  cuidado que puede ir por ti.''')
+  elif r1==True and r2==True and r3==False:
+    print('''Solo se encontró la locación del suceso, parece ser que esto no va a proceder,
+  porque sin arma y sin sospecheso, no se puede hacer nada''')
+  elif r1==False and r2==False and r3==True:
+    print('''Bien hecho se encontró el culpable y el arma, pero la habitación no, parece
+  que el asesino si hizo una cosa bien.''')
+  elif r1==False and r2==True and r3==False:
+    print('''Bien, se encontró el asesino y la habitacion, pero el arma se perdío, podría
+  estar a la vista de todos, o desaparecio''')
+  elif r1==True and r2==False and r3==False:
+    print('''Buen trabajo, encontraste el arma y la habitación pero el asesino fue muy astuto
+  y te mintio e inculpo a alguien mas. ''')
+  elif r1==False and r2==False and r3==False:
+    print('''Excelente, este caso quedo completamente resuelto gracias a ti, esperemos que
+  ese asesino ya no salga. ''')
+  elif r1==True and r2==True and r3==True:
+    print('''Pff, este caso quedo como en un inicio sin pistas ni nada, creo que buscaremos
+  otro detective, o quieres intentarlo de nuevo?''')
+
+  print('\npresiona enter para continuar...')
+  input()
+  clear_output()
+111
